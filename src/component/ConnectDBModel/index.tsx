@@ -1,7 +1,12 @@
 import { Modal, Form, Input, FormInstance } from 'antd'
-import { useRef, useState } from 'react'
+import { useRef } from 'react'
+import { connectService } from '../../service'
 
-export interface IConnectDBModelProps { }
+export interface IConnectDBModelProps {
+    show: boolean
+    handleOk?: (args: ConnectArgs) => void
+    handleCancel?: () => void
+}
 
 export interface ConnectArgs {
     host?: string;
@@ -10,37 +15,36 @@ export interface ConnectArgs {
     password?: string;
 }
 
-const ConnectDBModel: React.FC<IConnectDBModelProps> = (props) => {
+const ConnectDBModel: React.FC<IConnectDBModelProps> = ({ show, handleOk, handleCancel }) => {
     const form = useRef<FormInstance | null>(null)
-    const [show, setShow] = useState<boolean>()
-    const [connectArgs, setConnectArgs] = useState<ConnectArgs>({
-        host: 'localhost',
-        port: 3306
-    })
 
-
-    const handleOk = async () => {
+    const _handleOk = async () => {
         if (!form.current) return
         const { validateFields } = form.current
 
         try {
-            const res = await validateFields()
-            console.log(res)
+            const connectArgs = await validateFields()
+            const reply = await connectService.connect(connectArgs)
+            console.log(reply)
+            handleOk && handleOk(connectArgs)
         } catch (err) {
             console.log(err)
         }
     }
-    const handleCancel = () => {
 
+    const _handleCancel = async () => {
+        if (!form.current) return
+        const { resetFields } = form.current
+        resetFields()
+        handleCancel && handleCancel()
     }
-
 
     return (
         <Modal
             title="Connect Database"
-            visible={true}
-            onOk={handleOk}
-            onCancel={handleCancel}
+            visible={show}
+            onOk={_handleOk}
+            onCancel={_handleCancel}
             okText={"Connect"}
         >
             <Form ref={form} >
@@ -48,20 +52,20 @@ const ConnectDBModel: React.FC<IConnectDBModelProps> = (props) => {
                     labelCol={{ span: 5 }}
                     label="host"
                     name="host"
-                    initialValue={connectArgs.host}
+                    initialValue={"localhost"}
                     rules={[{ required: true, message: 'Please input your host!' }]}
                 >
-                    <Input value={connectArgs.host} />
+                    <Input />
                 </Form.Item>
 
                 <Form.Item
                     labelCol={{ span: 5 }}
                     label="port"
                     name="port"
-                    initialValue={connectArgs.port}
+                    initialValue={3306}
                     rules={[{ required: true, message: 'Please input your port!' }]}
                 >
-                    <Input value={connectArgs.port} />
+                    <Input />
                 </Form.Item>
 
                 <Form.Item
@@ -70,7 +74,7 @@ const ConnectDBModel: React.FC<IConnectDBModelProps> = (props) => {
                     name="username"
                     rules={[{ required: true, message: 'Please input your username!' }]}
                 >
-                    <Input value={connectArgs.username} />
+                    <Input />
                 </Form.Item>
 
                 <Form.Item
@@ -79,7 +83,7 @@ const ConnectDBModel: React.FC<IConnectDBModelProps> = (props) => {
                     name="password"
                     rules={[{ required: true, message: 'Please input your password!' }]}
                 >
-                    <Input value={connectArgs.password} />
+                    <Input />
                 </Form.Item>
             </Form>
         </Modal>

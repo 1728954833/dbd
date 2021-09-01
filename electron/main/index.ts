@@ -1,7 +1,8 @@
 // Modules to control application life and create native browser window
 import { app, BrowserWindow } from "electron";
 import * as isDev from "electron-is-dev";
-
+import * as path from "path";
+import "./controller";
 //保持窗口对象的全局引用，如果不这样做，窗口将在 JavaScript 对象被垃圾回收时自动关闭。
 let mainWindow: any;
 
@@ -12,6 +13,7 @@ function createWindow() {
         webPreferences: {
             nodeIntegration: true,
             contextIsolation: false,
+            preload: path.join(__dirname, "./preload.js"),
         },
     });
 

@@ -22,6 +22,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 // Modules to control application life and create native browser window
 var electron_1 = require("electron");
 var isDev = __importStar(require("electron-is-dev"));
+var path = __importStar(require("path"));
+require("./controller");
 //保持窗口对象的全局引用，如果不这样做，窗口将在 JavaScript 对象被垃圾回收时自动关闭。
 var mainWindow;
 function createWindow() {
@@ -31,6 +33,7 @@ function createWindow() {
         webPreferences: {
             nodeIntegration: true,
             contextIsolation: false,
+            preload: path.join(__dirname, "./preload.js"),
         },
     });
     mainWindow.loadURL(isDev
