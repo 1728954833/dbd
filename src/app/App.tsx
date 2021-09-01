@@ -1,6 +1,6 @@
 import { Layout } from 'antd'
 import { ContainerOutlined } from '@ant-design/icons'
-import { Banner, Menu } from '../component'
+import { Banner, Menu, ConnectButton } from '../component'
 const { Header, Sider, Content } = Layout;
 
 const theme: React.CSSProperties = {
@@ -25,10 +25,10 @@ const menus = [{
 function App() {
   return <>
     <Layout className="h100">
-      <Sider style={theme}>
+      <Sider className='relative' style={theme}>
         <Banner />
-        <Menu title={"DATABASE"} menus={menus}>
-        </Menu>
+        <Menu title={"DATABASE"} menus={menus} />
+        <ConnectButton className='absolute b0 w100' />
       </Sider>
       <Layout>
         <Header style={theme}>Header</Header>

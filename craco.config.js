@@ -7,7 +7,7 @@ module.exports = {
             plugin: CracoAntDesignPlugin,
             options: {
                 customizeTheme: {
-                    '@primary-color': '#2e3742',
+                    '@primary-color': '#595959',
                 },
             },
         },

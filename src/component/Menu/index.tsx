@@ -15,9 +15,7 @@ export interface IMenuProps {
 
 const Menu: React.FC<IMenuProps> = ({ menus, title, handleSwitch }) => {
     const [active, setActive] = useState<MenuItem>()
-    console.log(menus)
     const handleActive = (menu: MenuItem) => {
-        console.log(menu)
         setActive(menu)
         handleSwitch && handleSwitch(menu)
     }
