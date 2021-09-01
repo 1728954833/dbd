@@ -1,4 +1,5 @@
 import { Layout } from 'antd'
+import { ContainerOutlined } from '@ant-design/icons'
 import { Banner, Menu } from '../component'
 const { Header, Sider, Content } = Layout;
 
@@ -7,16 +8,26 @@ const theme: React.CSSProperties = {
   color: 'white'
 }
 
+const menus = [{
+  label: "localhost",
+  value: "localhost",
+  icon: <ContainerOutlined />
+}, {
+  label: "wallex_local",
+  value: "wallex_local",
+  icon: <ContainerOutlined />
+}, {
+  label: "wallex_compliance_local",
+  value: "wallex_compliance_local",
+  icon: <ContainerOutlined />
+}]
+
 function App() {
   return <>
     <Layout className="h100">
       <Sider style={theme}>
         <Banner />
-        <Menu title={"test"} menus={[{
-          label: "1",
-          value: "1"
-        }]}>
-
+        <Menu title={"DATABASE"} menus={menus}>
         </Menu>
       </Sider>
       <Layout>

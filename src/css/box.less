@@ -1,4 +1,5 @@
 @space: 4px;
+@count: 10;
 
 .m(@n, @i: 1) when (@i =< @n) {
     .ml-@{i} {
@@ -54,5 +55,5 @@
     .p(@n, @i + 1);
 }
   
-.m(5);
-.p(5);
+.m(@count);
+.p(@count);

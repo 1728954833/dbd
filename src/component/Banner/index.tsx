@@ -2,7 +2,7 @@ export interface IBannerProps { };
 
 const Banner: React.FC<IBannerProps> = (props) => {
     return (
-        <div className="flex justify-center align-center p-4" style={{ height: 64 }}>
+        <div className="flex justify-center align-center" style={{ height: 64 }}>
             <img className="mr-2" height="36" width="36" src="https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg" alt="antd" />
             MYSQL Document
         </div>
