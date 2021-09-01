@@ -28,7 +28,7 @@ function App() {
       <Sider className='relative' style={theme}>
         <Banner />
         <Menu title={"DATABASE"} menus={menus} />
-        <ConnectButton className='absolute b0 w100' />
+        <ConnectButton className='absolute b0' />
       </Sider>
       <Layout>
         <Header style={theme}>Header</Header>
