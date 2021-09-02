@@ -27,12 +27,19 @@
     "web-vitals": "^1.0.1"
   },
   "scripts": {
+    "start:render": "cross-env BROWSER=none craco start",
+    "start:build:main": "cross-env NODE_ENV=development ts-node --project ./config/tsconfig.json ./config/start.ts",
+    "start:main": "wait-on http://localhost:3000 && nodemon --watch ./build --exec electron ./build/main.js",
+    "start": "npm-run-all --parallel start:*",
+    "build:render": "craco build",
+    "build:main": "cross-env NODE_ENV=production ts-node --project ./config/tsconfig.json ./config/start.ts",
+    "build": "npm-run-all build:*",
     "lint": "eslint --fix",
-    "start": "craco start",
     "test": "craco test",
-    "build": "craco build",
-    "watch:electron": "tsc -w --project ./electron/tsconfig.json",
-    "watch:app": "concurrently \" wait-on http://localhost:3000 && electron ./main/index.js \" \" cross-env BROWSER=none npm start \" "
+    "package-all": "npm run build && electron-builder build -mwl",
+    "package-mac": "npm run  build && electron-builder build --mac",
+    "package-linux": "npm run  build && electron-builder build --linux",
+    "package-win": "npm run  build && electron-builder build --win --x64"
   },
   "eslintConfig": {
     "extends": [
@@ -59,6 +66,8 @@
     "cross-env": "^7.0.3",
     "electron": "^14.0.0",
     "electron-builder": "^22.11.7",
+    "npm-run-all": "^4.1.5",
+    "ts-loader": "^8.2.0",
     "ts-node": "^10.2.1",
     "wait-on": "^6.0.0"
   }

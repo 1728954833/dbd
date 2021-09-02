@@ -1,6 +1,5 @@
 const CracoAntDesignPlugin = require('craco-antd');
 
-console.log('start')
 module.exports = {
     plugins: [
         {
