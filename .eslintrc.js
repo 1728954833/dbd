@@ -15,12 +15,18 @@ module.exports = {
             'jsx': true
         },
         'ecmaVersion': 12,
-        'sourceType': 'module'
+        'sourceType': 'module',
+        'warnOnUnsupportedTypeScriptVersion': false
     },
     'plugins': [
         'react',
         '@typescript-eslint'
     ],
+    'settings': {
+        react: {
+            version: 'detect'
+        }
+    },
     'rules': {
         'indent': [
             'error',
@@ -40,6 +46,7 @@ module.exports = {
         ],
         'no-mixed-spaces-and-tabs': 'off',
         'react/prop-types': [0],
-        '@typescript-eslint/explicit-module-boundary-types': 'off'
+        '@typescript-eslint/explicit-module-boundary-types': 'off',
+        // '@typescript-eslint/no-explicit-any': 'off'
     },
 };

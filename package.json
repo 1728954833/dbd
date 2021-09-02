@@ -34,12 +34,15 @@
     "build:render": "craco build",
     "build:main": "cross-env NODE_ENV=production ts-node --project ./config/tsconfig.json ./config/start.ts",
     "build": "npm-run-all build:*",
-    "lint": "eslint --fix",
-    "test": "craco test",
+    "lint": "eslint --ext .ts,.tsx,.js,.jsx src main config",
+    "test:render": "craco test",
     "package-all": "npm run build && electron-builder build -mwl",
     "package-mac": "npm run  build && electron-builder build --mac",
     "package-linux": "npm run  build && electron-builder build --linux",
     "package-win": "npm run  build && electron-builder build --win --x64"
+  },
+  "lint-staged": {
+    "*.js": "eslint --fix"
   },
   "eslintConfig": {
     "extends": [
@@ -67,6 +70,8 @@
     "electron": "^14.0.0",
     "electron-builder": "^22.11.7",
     "eslint": "^7.32.0",
+    "husky": "^7.0.2",
+    "lint-staged": "^11.1.2",
     "npm-run-all": "^4.1.5",
     "ts-loader": "^8.2.0",
     "ts-node": "^10.2.1",
