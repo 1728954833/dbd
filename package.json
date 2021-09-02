@@ -27,6 +27,7 @@
     "web-vitals": "^1.0.1"
   },
   "scripts": {
+    "prepare": "husky install",
     "start:render": "cross-env BROWSER=none craco start",
     "start:build:main": "cross-env NODE_ENV=development ts-node --project ./config/tsconfig.json ./config/start.ts",
     "start:main": "wait-on http://localhost:3000 && nodemon --watch ./build --exec electron ./build/main.js",
@@ -42,7 +43,7 @@
     "package-win": "npm run  build && electron-builder build --win --x64"
   },
   "lint-staged": {
-    "*.js": "eslint --fix"
+    "*.{ts,tsx}": "npm run lint"
   },
   "eslintConfig": {
     "extends": [
