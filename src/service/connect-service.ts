@@ -1,6 +1,6 @@
 import { ConnectArgs } from '../component/ConnectDBModel';
 
-const ipcRenderer = window.Electron.ipcRenderer;
+const ipcRenderer = window?.Electron?.ipcRenderer;
 
 export const connect = async (connectArgs: ConnectArgs) => {
     ipcRenderer.send('connect', connectArgs);
