@@ -1,4 +1,4 @@
-import { Sequelize } from "sequelize";
+import { Sequelize } from 'sequelize';
 
 export interface ConnectArgs {
     host: string;
@@ -9,23 +9,23 @@ export interface ConnectArgs {
 class DBConnection {
     public sequelize: Sequelize;
     constructor(args: ConnectArgs) {
-        this.sequelize = this.connect(args);
+    	this.sequelize = this.connect(args);
     }
 
     connect(args: ConnectArgs): Sequelize {
-        const sequelize = new Sequelize(args);
+    	const sequelize = new Sequelize(args);
 
-        sequelize
-            .authenticate()
-            .catch(error =>
-                console.error("Unable to connect to the database:", error)
-            );
+    	sequelize
+    		.authenticate()
+    		.catch(error =>
+    			console.error('Unable to connect to the database:', error)
+    		);
 
-        return sequelize;
+    	return sequelize;
     }
 
     switchConnect(args: ConnectArgs) {
-        this.sequelize = this.connect(args);
+    	this.sequelize = this.connect(args);
     }
 }
 

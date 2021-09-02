@@ -1,14 +1,16 @@
-import { Button, ButtonProps } from 'antd'
-import { ApiOutlined } from '@ant-design/icons'
-import cn from 'classnames'
-import ConnectDBModel from '../ConnectDBModel'
-import { useState } from 'react'
+import { Button, ButtonProps } from 'antd';
+import { ApiOutlined } from '@ant-design/icons';
+import cn from 'classnames';
+import ConnectDBModel from '../ConnectDBModel';
+import React, { useState } from 'react';
 
-export interface IConnectButtonProps { };
+export interface IConnectButtonProps {
+    className: string
+ }
 
 const ConnectButton: React.FC<IConnectButtonProps & ButtonProps> = (props) => {
-    const { className, ...rest } = props
-    const [show, setShow] = useState<boolean>(false)
+    const { className, ...rest } = props;
+    const [show, setShow] = useState<boolean>(false);
 
     return (
         <>
@@ -27,6 +29,6 @@ const ConnectButton: React.FC<IConnectButtonProps & ButtonProps> = (props) => {
             </Button>
         </>
     );
-}
+};
 
 export default ConnectButton;
